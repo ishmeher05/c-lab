@@ -1,0 +1,128 @@
+#include<stdio.h>
+#include<stdlib.h>
+#define MAX 5
+int stack[MAX];
+int top=-1;
+        void push(int x);
+        int pop();
+        void display();
+        void check_palindrome();
+        void check_palindrome2();
+        int main()
+{
+        int choice,x;
+        while(1)
+        {
+                printf("\n 1.Push");
+                printf("\n 2.Pop");
+                printf("\n 3.Display");
+                printf("\n 4.Quit");
+                printf("\n 5.Check Palindrome1");
+                printf("\n 6.Check Palindrome2");
+                printf("\n Enter your choice:");
+                scanf("%d",&choice);
+                switch(choice)
+                {
+                        case 1:
+                                printf("Enter the element to be pushed:");
+                                scanf("%d",&x);
+                                push(x);
+                                break;
+                        case 2:
+                                x=pop();
+                                printf("Popped element is ;%d",x);
+                                break;
+                        case 3:
+                                display();
+                                break;
+                        case 4:
+                                exit(1);
+                        case 5:
+                                check_palindrome();
+                                break;
+                        case 6: check_palindrome2();
+                                break;
+ default:
+                        printf("Invalid choice");
+                        }
+        }
+}
+        void push(int x)
+        {
+                if (top==MAX-1)
+                        printf("Stack overflow");
+                else
+                {
+                        top=top+1;
+                        stack[top]=x;
+                }
+        }
+        int pop()
+        {
+                int x;
+                if(top==-1)
+                        printf("Stack underflow");
+                else
+                {
+                        x=stack[top];
+                        top=top-1;
+                        return x;
+  }
+        }
+        void display()
+        {
+                int i;
+                if (top==-1)
+                        printf("Stack is empty");
+                else
+                {
+                        printf("stack elements are:");
+                        for(i=top;i>=0;i--)
+                                printf("%d", stack[i]);
+                }
+        }
+        void check_palindrome()
+        {
+                int i,j,flag=0;
+                char str[20];
+                printf("Resetting the stack\n");
+                top=-1;
+                printf("Enter the string:");
+                scanf("%s",str);
+                        for(i=0;str[i]!='\0';i++)
+                        push(str[i]);
+                        for(j=0;str[j]!='\0';j++)
+                {
+                        if (str[j]!=pop())
+                                                                                                                                                   
+
+ {
+                                flag=1;
+                                break;
+                        }
+
+                }
+                if(flag==1)
+                        printf("String is not a palindrome\n");
+                else
+                        printf("String is a palindrme\n");
+        }
+        void check_palindrome2()
+        {
+                int floor=0, ceil=top,flag=0;
+                while(floor<ceil)
+                {
+                        if (stack[floor]!=stack[ceil])
+                        {
+                                flag=1;
+                                break;
+                        }
+                        floor++;
+                        ceil--;
+                }
+                if(flag==1)
+                        printf("Stack is not a palindrome\n");
+                else
+                        printf("Stack is a palindrome\n");
+        }
+
